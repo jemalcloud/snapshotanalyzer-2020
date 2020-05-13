@@ -10,4 +10,7 @@ In my case "shotty" or anyname you provide with config file, uses the configurat
 `aws configure --profile shotty`
 
 ## How to run it
-`pipenv run python shotty/shotty.py`
+`pipenv run python shotty/shotty.py <command> <--project=PROJECT>`
+
+*command* is list, start, or stop
+*project* is optional
