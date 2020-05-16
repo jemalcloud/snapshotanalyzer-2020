@@ -144,6 +144,23 @@ def stop_instances(project):
             continue
     return
 
+@instances.command('terminate')
+@click.option('--project', default=None,
+  help='Only instances for project')
+def stop_instances(project):
+    "Terminate EC2 instances"
+
+    instances = filter_instances(project)
+
+    for i in instances:
+        print("Terminating {0}...".format(i.id))
+        try:
+            i.terminate()
+        except botocore.exceptions.ClientError as e:
+            print(" Coould not terminate {0}. ".format(i.id) + str(e))
+            continue
+    return
+    
 @instances.command('start')
 @click.option('--project', default=None,
   help='Only instances for project')
